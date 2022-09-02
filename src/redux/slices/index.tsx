@@ -1,5 +1,4 @@
-export const slices = {};
+import userSlice from "./user.slice";
+import loadingSlice from "./loading.slice";
 
-export const actions = {};
-
-export const initialState = {};
+export default { userSlice, loadingSlice, };

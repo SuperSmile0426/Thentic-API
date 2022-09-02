@@ -1,12 +1,15 @@
 import React from "react";
+
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 
-const ariaLabel = { 'aria-label': 'description' };
+//stores
+import { signIn } from "../../redux/slices/user.slice";
 
 const SignIn = () => {
+
   return (
     <FormControl>
       <InputLabel htmlFor="my-input">Email address</InputLabel>

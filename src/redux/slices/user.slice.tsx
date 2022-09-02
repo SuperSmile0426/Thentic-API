@@ -5,11 +5,6 @@ export interface IUser {
   apiKey?: string;
 }
 
-export interface IPagination {
-  items: any[];
-  meta: any;
-}
-
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -18,7 +13,7 @@ const userSlice = createSlice({
     verifiedSignature: false,
     gettingMe: false,
     gotMe: false,
-    accessToken: "",
+    token: "",
     error: {},
   },
   reducers: {
@@ -32,10 +27,10 @@ const userSlice = createSlice({
     signInSuccess(state, action) {
       state.verifyingSignature = false;
       state.verifiedSignature = true;
-      state.accessToken = action.payload.AccessToken;
-      localStorage.setItem("token", state.accessToken)
+      state.token = action.payload.token;
+      localStorage.setItem("token", state.token)
 
-      console.log("accessToken:", state.accessToken);
+      console.log("token:", state.token);
     },
     signInError(state, action) {
       state.verifyingSignature = false;
@@ -48,12 +43,10 @@ const userSlice = createSlice({
     getMe(state, action) {
       state.gettingMe = true;
       state.gotMe = false;
-    },
-    
+    }, 
     getMeSuccess(state, action) {
       state.gettingMe = false;
       state.gotMe = true;
-      // state.user = Object.assign(state.user, action.payload);
       state.user = { ...action.payload };
     },
     getMeError(state, action) {
@@ -63,6 +56,9 @@ const userSlice = createSlice({
       localStorage.removeItem("token");
       state.error = action.payload;
     },
+    /*
+    logout
+    */
     logouts(state, action) {
       state.user = {};
       localStorage.removeItem("token");

@@ -12,7 +12,7 @@ import AppRoutes from "./AppRoutes";
 // import { web3Moralis } from "./consts";
 
 //stores
-import store from "./redux";
+import {store} from "./redux/store";
 
 function App() {
   return (

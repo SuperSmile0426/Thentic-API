@@ -1,7 +1,10 @@
-import { all } from "redux-saga/effects";
+import { all, call, put, takeLatest } from "redux-saga/effects";
 
-export function* appSaga() {
-  yield all([]);
+//sagas
+
+//slices
+
+function* rootSaga() {
 }
 
-export const appSagaActions = {};
+export default rootSaga;

@@ -1,15 +1,15 @@
 import React from 'react';
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-// import Web3 from "web3";
-// import { Web3ReactProvider } from "@web3-react/core";
+
+// moralis
+// import { MoralisProvider } from 'react-moralis'
 
 //routes
 import AppRoutes from "./AppRoutes";
 
-// const getLibrary = (provider: any) => {
-//   return new Web3(provider);
-// }
+//const 
+// import { web3Moralis } from "./consts";
 
 //stores
 import store from "./redux";
@@ -17,11 +17,14 @@ import store from "./redux";
 function App() {
   return (
     <Provider store={store}>
-      {/* <Web3ReactProvider getLibrary={getLibrary}> */}
+      {/* <MoralisProvider
+        appId={web3Moralis.PUBLIC_MORALIS_APP_ID as string}
+        serverUrl={web3Moralis.PUBLIC_MORALIS_SERVER_ID as string}
+      > */}
         <BrowserRouter>
           <AppRoutes />
         </BrowserRouter>
-      {/* </Web3ReactProvider> */}
+      {/* </MoralisProvider> */}
     </Provider>
   );
 }

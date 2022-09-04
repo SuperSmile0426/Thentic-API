@@ -1,66 +1,58 @@
-// import React from 'react'
-// import AppBar from '@material-ui/core/AppBar'
-// import Toolbar from '@material-ui/core/Toolbar'
-// import Typography from '@material-ui/core/Typography'
-// import Button from '@mui/material/Button';
-// import { Link } from "react-router-dom";
-
-
-// const NavBar = () => {
-//     return(
-//         <div>
-//             <AppBar position="static">
-//                 <Toolbar>
-//                     <Typography color="inherit">
-//                         <Link to="/login">Login</Link>
-//                         <Link to="/register">Register</Link>
-//                     </Typography>
-//                     <Button color="inherit">Login</Button>
-//                     <Button color="inherit">Register</Button>
-//                 </Toolbar>
-//             </AppBar>
-//         </div>
-//     )
-// }
-// export default NavBar;
-
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
 // import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
+import Container from "@mui/material/Container";
 // import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 // import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import Link from '@mui/material/Link';
+import MenuItem from "@mui/material/MenuItem";
+import Link from "@mui/material/Link";
 // import AdbIcon from '@mui/icons-material/Adb';
+import { RootState } from "../../redux/store";
+import { logouts } from "../../redux/slices/user.slice";
+import { useNavigate } from "react-router-dom";
 
-const pages = ['Collections', 'NFTs'];
+const pages = ["Collections", "NFTs"];
+const path = ["/collections", "/nfts"];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-//   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { token } = useSelector((state: RootState) => state.user);
+
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
+
+  //   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-//   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-//     setAnchorElUser(event.currentTarget);
-//   };
+  //   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+  //     setAnchorElUser(event.currentTarget);
+  //   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleCloseNavMenu = (index: any) => {
+    // setAnchorElNav(null);
+    // console.log(index);
+    navigate(path[index]);
   };
 
-//   const handleCloseUserMenu = () => {
-//     setAnchorElUser(null);
-//   };
+  //   const handleCloseUserMenu = () => {
+  //     setAnchorElUser(null);
+  //   };
+
+  useEffect(() => {
+    // console.log(token);
+  }, [token]);
 
   return (
     <AppBar position="static">
@@ -74,18 +66,18 @@ const NavBar = () => {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              display: { xs: "none", md: "flex" },
+              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
             }}
           >
             Thentic API
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -96,30 +88,34 @@ const NavBar = () => {
             >
               {/* <MenuIcon /> */}
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            {localStorage.getItem("ApiKey") ? (
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: "block", md: "none" },
+                }}
+              >
+                {pages.map((page) => (
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            ) : (
+              ""
+            )}
           </Box>
           {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           <Typography
@@ -129,60 +125,51 @@ const NavBar = () => {
             href=""
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: 'monospace',
+              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
             }}
           >
             Thentic API
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            {/* <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip> */}
-            <Link href="/login" color="inherit"><Button color="inherit">Login</Button></Link>
-            <Link href="/register" color="inherit"><Button color="inherit">Register</Button></Link>
-            {/* <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
+          {localStorage.getItem("ApiKey") ? (
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              {pages.map((page, index) => (
+                <Button
+                  key={page}
+                  onClick={() => handleCloseNavMenu(index)}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {page}
+                </Button>
               ))}
-            </Menu> */}
-          </Box>
+            </Box>
+          ) : (
+            <Box
+              sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+            ></Box>
+          )}
+
+          {!localStorage.getItem("ApiKey") ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Link href="/login" color="inherit">
+                <Button color="inherit">Login</Button>
+              </Link>
+              <Link href="/register" color="inherit">
+                <Button color="inherit">Register</Button>
+              </Link>
+            </Box>
+          ) : (
+            <Box sx={{ flexGrow: 0 }}>
+              <Button color="inherit" onClick={() => dispatch(logouts({}))}>
+                Logout
+              </Button>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

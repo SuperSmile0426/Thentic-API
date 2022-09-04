@@ -9,7 +9,7 @@ export const NFTApi = {
     try {
       const res = await thenticClient.post("/api/nfts/mint", data);
       const resBody = res.data;
-      console.log("NEWNFT", resBody);
+      // console.log("NEWNFT", resBody);
       return resBody;
     } catch (err) {
       throw err;

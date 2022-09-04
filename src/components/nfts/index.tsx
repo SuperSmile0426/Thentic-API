@@ -46,6 +46,8 @@ const NFTs = () => {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
 
+  const [detailNFT, setDetailNFT] = useState<any>();
+
   const { NFTs, NFT } = useSelector((state: RootState) => state.nft);
 
   const handleOpen = () => setOpen(true);
@@ -53,6 +55,12 @@ const NFTs = () => {
 
   const handleOpen1 = () => setOpen1(true);
   const handleClose1 = () => setOpen1(false);
+
+  const setOneNFT = (data: any) => {
+    setDetailNFT(data);
+    // console.log("detaildata", detailNFT);
+    handleOpen1();
+  };
 
   const getAllNFTs = useCallback(async () => {
     const getData = {
@@ -157,9 +165,11 @@ const NFTs = () => {
                       <Button
                         size="medium"
                         color="success"
-                        onClick={handleOpen1}
+                        onClick={() => {
+                          setOneNFT(e);
+                        }}
                       >
-                        Transfer NFTs
+                        Detail NFTs
                       </Button>
                     )}
                   </CardActions>
@@ -261,23 +271,26 @@ const NFTs = () => {
       >
         <Box sx={{ ...style }}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Transfer Info
+            NFT Detail Info
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <TextField
-              label="File"
-              color="secondary"
-              focused
-              onChange={(e) => {
-                // setNFTName(e.target.value);
-              }}
-            />
-            <br />
-          </Typography>
-          <br></br>
-          <Button color="info" onClick={() => {}}>
-            Transfer NFT
-          </Button>
+          {detailNFT ? (
+            <div>
+              <p>CollectionName : {detailNFT.name ? detailNFT.name : ""}</p>
+              <p>
+                CollectionShortName :{" "}
+                {detailNFT.short_name ? detailNFT.short_name : ""}
+              </p>
+              <p>chainId : {detailNFT.chain_id ? detailNFT.chain_id : ""}</p>
+              <p>NFTName : {detailNFT.data.name ? detailNFT.data.name : ""}</p>
+              <p>
+                Description :{" "}
+                {detailNFT.data.description ? detailNFT.data.description : ""}
+              </p>
+              <p>Img : {detailNFT.data.imgUrl ? detailNFT.data.imgUrl : ""}</p>
+            </div>
+          ) : (
+            ""
+          )}
         </Box>
       </Modal>
     </div>

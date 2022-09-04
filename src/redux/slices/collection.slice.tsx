@@ -33,7 +33,7 @@ const userSlice = createSlice({
       state.creatingCollection = false;
       state.createdCollection = true;
       state.collection = action.payload;
-      console.log("collection:", state.collection);
+      // console.log("collection:", state.collection);
     },
     createCollectionError(state, action) {
       state.creatingCollection = false;
@@ -50,7 +50,7 @@ const userSlice = createSlice({
       state.gettingCollections = false;
       state.gotCollections = true;
       state.collections = action.payload.contracts;
-      console.log("collections:", state.collections);
+      // console.log("collections:", state.collections);
     },
     getCollectionsError(state, action) {
       state.gettingCollections = false;

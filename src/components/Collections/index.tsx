@@ -75,6 +75,8 @@ const Collections = () => {
       chain_id: chain,
       name: collectionName,
       short_name: shortName,
+      webhook_url: "https://127.0.0.1:3000/collection1",
+      redirect_url: "https://127.0.0.1:3000/collection2",
     };
     await dispatch(createCollection({ collectionInfo: collectionInfo }));
     await getAllCollection();
@@ -172,7 +174,7 @@ const Collections = () => {
                         size="medium"
                         color="success"
                         onClick={() => {
-                          console.log(e.contract);
+                          // console.log(e.contract);
                           navigate(`/collections/${e.contract}/${e.chain_id}`);
                         }}
                       >

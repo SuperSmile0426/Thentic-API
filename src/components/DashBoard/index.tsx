@@ -48,10 +48,8 @@ const DashBoard = () => {
 
   const { NFTs, NFT } = useSelector((state: RootState) => state.nft);
 
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleOpen1 = () => setOpen1(true);
   const handleClose1 = () => setOpen1(false);
 
   const getAllNFTs = useCallback(async () => {
@@ -61,7 +59,7 @@ const DashBoard = () => {
     };
 
     dispatch(getNFTs({ getNFTInfo: getData }));
-  }, [dispatch, chainId]);
+  }, [dispatch]);
 
   const createNewNFT = async () => {
     if (!nft_name || !nft_description || !chainId || !id) {
@@ -129,6 +127,8 @@ const DashBoard = () => {
                       <>status : {e.status}</>
                       <br />
                       <>request : {e.request_id}</>
+                      <br />
+                      <>contract : {e.contract?.slice(0, 8)}...</>
                       <br />
                     </Typography>
                   </CardContent>

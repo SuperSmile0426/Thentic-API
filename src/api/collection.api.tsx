@@ -7,8 +7,10 @@ const thenticClient = getClient(thentic_Api || "");
 export const collectionApi = {
   async createCollection(data: any) {
     try {
+      console.log("createNewCollection Data:", data);
       const res = await thenticClient.post("/api/nfts/contract", data);
       const resBody = res.data;
+      console.log("New:", resBody);
       return resBody;
     } catch (err) {
       throw err;

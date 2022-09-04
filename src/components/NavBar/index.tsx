@@ -16,12 +16,15 @@ import Link from "@mui/material/Link";
 // import AdbIcon from '@mui/icons-material/Adb';
 import { RootState } from "../../redux/store";
 import { logouts } from "../../redux/slices/user.slice";
+import { useNavigate } from "react-router-dom";
 
 const pages = ["Collections", "NFTs"];
+const path = ["/collections", "/nfts"];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { token } = useSelector((state: RootState) => state.user);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -37,8 +40,10 @@ const NavBar = () => {
   //     setAnchorElUser(event.currentTarget);
   //   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleCloseNavMenu = (index: any) => {
+    // setAnchorElNav(null);
+    // console.log(index);
+    navigate(path[index]);
   };
 
   //   const handleCloseUserMenu = () => {
@@ -46,7 +51,7 @@ const NavBar = () => {
   //   };
 
   useEffect(() => {
-    console.log(token);
+    // console.log(token);
   }, [token]);
 
   return (
@@ -83,7 +88,7 @@ const NavBar = () => {
             >
               {/* <MenuIcon /> */}
             </IconButton>
-            {token ? (
+            {localStorage.getItem("ApiKey") ? (
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
@@ -131,12 +136,12 @@ const NavBar = () => {
           >
             Thentic API
           </Typography>
-          {token ? (
+          {localStorage.getItem("ApiKey") ? (
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
+              {pages.map((page, index) => (
                 <Button
                   key={page}
-                  onClick={handleCloseNavMenu}
+                  onClick={() => handleCloseNavMenu(index)}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
                   {page}
@@ -149,7 +154,7 @@ const NavBar = () => {
             ></Box>
           )}
 
-          {token === "" ? (
+          {!localStorage.getItem("ApiKey") ? (
             <Box sx={{ flexGrow: 0 }}>
               <Link href="/login" color="inherit">
                 <Button color="inherit">Login</Button>

@@ -1,12 +1,18 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { NotFoundPage, DashboardPage, SignInPage, SignUpPage } from "./pages";
+import {
+  NotFoundPage,
+  DashboardPage,
+  SignInPage,
+  SignUpPage,
+  CollectionsPage,
+  NFTsPage,
+} from "./pages";
 import { NavBar } from "./components";
 
-
 import { PATH } from "./consts";
-// 
+//
 const AppRoutes = () => {
   return (
     <>
@@ -17,7 +23,8 @@ const AppRoutes = () => {
         <Route path={PATH.NOTFOUND} element={<NotFoundPage />} />
         <Route path={PATH.SIGNIN} element={<SignInPage />} />
         <Route path={PATH.SIGNUP} element={<SignUpPage />} />
-
+        <Route path={PATH.COLLECTION} element={<CollectionsPage />} />
+        <Route path={PATH.COLLECTION_NFTS} element={<NFTsPage />} />
       </Routes>
     </>
   );

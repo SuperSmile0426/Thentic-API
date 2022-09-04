@@ -59,6 +59,7 @@ const userSlice = createSlice({
       state.gotMe = false;
       state.user = {};
       localStorage.removeItem("token");
+      localStorage.removeItem("ApiKey");
       state.error = action.payload;
     },
     /*
@@ -84,6 +85,7 @@ const userSlice = createSlice({
       state.user = {};
       state.token = "";
       localStorage.removeItem("token");
+      localStorage.removeItem("ApiKey");
       localStorage.removeItem("wallet_connection");
     },
 
@@ -94,6 +96,7 @@ const userSlice = createSlice({
     setLoginSuccess(state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
+      localStorage.setItem("ApiKey", state.api_Key);
     },
   },
 });

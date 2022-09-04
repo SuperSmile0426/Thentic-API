@@ -3,6 +3,7 @@ import createSagaMiddleware from "redux-saga";
 
 import userReducer from "./slices/user.slice";
 import loadingReducer from "./slices/loading.slice";
+import collectionReducer from "./slices/collection.slice";
 
 import rootSaga from "./sagas";
 
@@ -11,6 +12,7 @@ const sagaMiddleware = createSagaMiddleware();
 const reducer = combineReducers({
   loading: loadingReducer,
   user: userReducer,
+  collection: collectionReducer,
 });
 
 export const store = configureStore({

@@ -18,7 +18,7 @@ import { RootState } from "../../redux/store";
 import { logouts } from "../../redux/slices/user.slice";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["Collections", "NFTs"];
+const pages = ["Collections"];
 const path = ["/collections", "/nfts"];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 

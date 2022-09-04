@@ -34,7 +34,7 @@ const style = {
   pb: 3,
 };
 
-const NFTs = () => {
+const DashBoard = () => {
   const dispatch = useDispatch();
   const classes = usenStyles();
 
@@ -57,7 +57,7 @@ const NFTs = () => {
   const getAllNFTs = useCallback(async () => {
     const getData = {
       ApiKey: localStorage.getItem("ApiKey"),
-      chainId: chainId,
+      chainId: 80001,
     };
 
     dispatch(getNFTs({ getNFTInfo: getData }));
@@ -104,20 +104,10 @@ const NFTs = () => {
 
   return (
     <div className={classes.root}>
-      <Button
-        onClick={handleOpen}
-        color="success"
-        className={classes.createButton}
-      >
-        New NFT
-      </Button>
-
-      <br />
-      <br />
       {NFTs ? (
         <Box sx={{ flexGrow: 1 }} className={classes.allCollections}>
           <Grid container spacing={5}>
-            {NFTs.filter((el) => el.contract === id).map((e, index) => (
+            {NFTs.map((e, index) => (
               <Grid item key={index}>
                 <Card>
                   <CardMedia
@@ -157,9 +147,9 @@ const NFTs = () => {
                       <Button
                         size="medium"
                         color="success"
-                        onClick={handleOpen1}
+                        // onClick={handleOpen1}
                       >
-                        Transfer NFTs
+                        Buy NFTs
                       </Button>
                     )}
                   </CardActions>
@@ -284,4 +274,4 @@ const NFTs = () => {
   );
 };
 
-export default NFTs;
+export default DashBoard;

@@ -5,6 +5,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Collections from "./Collections";
 import NFTs from "./nfts";
+import DashBoard from "./DashBoard";
 
 export {
   NavBar,
@@ -14,4 +15,5 @@ export {
   SignUp,
   Collections,
   NFTs,
+  DashBoard,
 };

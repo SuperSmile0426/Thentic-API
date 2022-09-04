@@ -1,5 +1,7 @@
+//node_modules
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -13,15 +15,15 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 
+//styles
 import { usenStyles } from "./style";
 
+//store
 import { RootState } from "../../redux/store";
-
 import {
   createCollection,
   getCollections,
 } from "../../redux/slices/collection.slice";
-import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute" as "absolute",
@@ -46,7 +48,7 @@ const Collections = () => {
     (state: RootState) => state.collection
   );
 
-  const [chain, setChain] = React.useState("");
+  const [chain, setChain] = React.useState("80001");
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -75,13 +77,13 @@ const Collections = () => {
       short_name: shortName,
     };
     await dispatch(createCollection({ collectionInfo: collectionInfo }));
-    getAllCollection();
+    await getAllCollection();
     handleClose();
   };
 
   const confirmTransaction = async (url: string) => {
     window.open(url as string, "_blank");
-    getAllCollection();
+    await getAllCollection();
   };
 
   useEffect(() => {
@@ -95,9 +97,10 @@ const Collections = () => {
   useEffect(() => {
     if (collection.transaction_url) {
       // navigate(collection.transaction_url as string);
-      window.open(collection.transaction_url as string, "_blank");
+      // window.open(collection.transaction_url as string, "_blank");
     }
-  }, [collection, navigate]);
+    getAllCollection();
+  }, [collection, navigate, getAllCollection]);
 
   const selectChain = (event: SelectChangeEvent) => {
     setChain(event.target.value);
@@ -136,7 +139,7 @@ const Collections = () => {
         <Box sx={{ flexGrow: 1 }} className={classes.allCollections}>
           <Grid container spacing={4}>
             {collections.map((e, index) => (
-              <Grid item xs={3} key={index}>
+              <Grid item key={index}>
                 <Card>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
@@ -170,9 +173,7 @@ const Collections = () => {
                         color="success"
                         onClick={() => {
                           console.log(e.contract);
-                          navigate(
-                            `/nftOfCollection?id=${e.contract}&chainId=${e.chain_id}`
-                          );
+                          navigate(`/collections/${e.contract}/${e.chain_id}`);
                         }}
                       >
                         Show NFTs

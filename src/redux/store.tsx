@@ -4,6 +4,7 @@ import createSagaMiddleware from "redux-saga";
 import userReducer from "./slices/user.slice";
 import loadingReducer from "./slices/loading.slice";
 import collectionReducer from "./slices/collection.slice";
+import nftReducer from "./slices/nft.slice";
 
 import rootSaga from "./sagas";
 
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   loading: loadingReducer,
   user: userReducer,
   collection: collectionReducer,
+  nft: nftReducer,
 });
 
 export const store = configureStore({

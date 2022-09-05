@@ -50,11 +50,12 @@ const Collections = () => {
 
   const [chain, setChain] = React.useState("80001");
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  // const [chainId, setChainId] = useState<any>();
   const [collectionName, setCollectionName] = useState<any>("");
   const [shortName, setShortName] = useState<any>("");
+  // const [chainId, setChainId] = useState<any>();
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const getAllCollection = useCallback(async () => {
     const getData = {

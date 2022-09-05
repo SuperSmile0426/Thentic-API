@@ -1,4 +1,6 @@
+//node_modules
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -6,21 +8,17 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-// import MenuIcon from '@mui/icons-material/Menu';
 import Container from "@mui/material/Container";
-// import Avatar from '@mui/material/Avatar';
 import Button from "@mui/material/Button";
-// import Tooltip from '@mui/material/Tooltip';
 import MenuItem from "@mui/material/MenuItem";
 import Link from "@mui/material/Link";
-// import AdbIcon from '@mui/icons-material/Adb';
+
+//store
 import { RootState } from "../../redux/store";
 import { logouts } from "../../redux/slices/user.slice";
-import { useNavigate } from "react-router-dom";
 
 const pages = ["Collections"];
-const path = ["/collections", "/nfts"];
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const path = ["/collections"];
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -31,34 +29,20 @@ const NavBar = () => {
     null
   );
 
-  //   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-  //   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-  //     setAnchorElUser(event.currentTarget);
-  //   };
 
   const handleCloseNavMenu = (index: any) => {
-    // setAnchorElNav(null);
-    // console.log(index);
     navigate(path[index]);
   };
 
-  //   const handleCloseUserMenu = () => {
-  //     setAnchorElUser(null);
-  //   };
-
-  useEffect(() => {
-    // console.log(token);
-  }, [token]);
+  useEffect(() => {}, [token]);
 
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -85,9 +69,7 @@ const NavBar = () => {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
-            >
-              {/* <MenuIcon /> */}
-            </IconButton>
+            ></IconButton>
             {localStorage.getItem("ApiKey") ? (
               <Menu
                 id="menu-appbar"
@@ -117,7 +99,6 @@ const NavBar = () => {
               ""
             )}
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           <Typography
             variant="h5"
             noWrap

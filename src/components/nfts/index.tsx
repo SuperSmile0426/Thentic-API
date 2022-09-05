@@ -45,7 +45,6 @@ const NFTs = () => {
   const [nft_description, setNFTDescription] = useState<string>("");
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
-
   const [detailNFT, setDetailNFT] = useState<any>();
 
   const { NFTs, NFT } = useSelector((state: RootState) => state.nft);
@@ -58,7 +57,6 @@ const NFTs = () => {
 
   const setOneNFT = (data: any) => {
     setDetailNFT(data);
-    // console.log("detaildata", detailNFT);
     handleOpen1();
   };
 
@@ -103,7 +101,6 @@ const NFTs = () => {
 
   useEffect(() => {
     getAllNFTs();
-    // console.log("OK", NFTs);
   }, [getAllNFTs]);
 
   useEffect(() => {

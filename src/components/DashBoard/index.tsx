@@ -44,13 +44,10 @@ const DashBoard = () => {
   const [nft_price, setNFTPrice] = useState<any>();
   const [nft_description, setNFTDescription] = useState<string>("");
   const [open, setOpen] = useState(false);
-  const [open1, setOpen1] = useState(false);
 
   const { NFTs, NFT } = useSelector((state: RootState) => state.nft);
 
   const handleClose = () => setOpen(false);
-
-  const handleClose1 = () => setOpen1(false);
 
   const getAllNFTs = useCallback(async () => {
     const getData = {
@@ -239,34 +236,6 @@ const DashBoard = () => {
             }}
           >
             Mint New NFT
-          </Button>
-        </Box>
-      </Modal>
-
-      <Modal
-        open={open1}
-        onClose={handleClose1}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={{ ...style }}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Transfer Info
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <TextField
-              label="File"
-              color="secondary"
-              focused
-              onChange={(e) => {
-                // setNFTName(e.target.value);
-              }}
-            />
-            <br />
-          </Typography>
-          <br></br>
-          <Button color="info" onClick={() => {}}>
-            Transfer NFT
           </Button>
         </Box>
       </Modal>

@@ -36,13 +36,13 @@ const SignUp = () => {
     dispatch(setUserSuccess({ email: email, password: password }));
     navigate("/login");
   };
+
   useEffect(() => {
     setApiKey(api_Key);
   }, [api_Key]);
 
   useEffect(() => {
     if (mail && pwd) {
-      // console.log("email, pass: ", mail, password);
     }
   }, [pwd, mail]);
 

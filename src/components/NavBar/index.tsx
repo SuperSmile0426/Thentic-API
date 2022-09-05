@@ -17,8 +17,8 @@ import Link from "@mui/material/Link";
 import { RootState } from "../../redux/store";
 import { logouts } from "../../redux/slices/user.slice";
 
-const pages = ["Collections"];
-const path = ["/collections"];
+const pages = ["Collections", "My walet"];
+const path = ["/collections", "/mywallet"];
 
 const NavBar = () => {
   const dispatch = useDispatch();

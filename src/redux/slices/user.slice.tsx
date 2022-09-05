@@ -4,6 +4,10 @@ export interface IUser {
   email?: string;
   apiKey?: string;
 }
+export interface IWallet {
+  private_key?: string;
+  wallet?: string;
+}
 
 const userSlice = createSlice({
   name: "user",
@@ -12,6 +16,13 @@ const userSlice = createSlice({
     api_Key: "",
     mail: "",
     pwd: "",
+    currentWallet: {} as IWallet,
+    wallets: [],
+    walletAddress: [],
+    creatingWallet: false,
+    createdWallet: false,
+    gettingWallet: false,
+    gotWallet: false,
     verifyingSignature: false,
     verifiedSignature: false,
     gettingMe: false,
@@ -98,6 +109,40 @@ const userSlice = createSlice({
       state.token = action.payload.token;
       localStorage.setItem("ApiKey", state.api_Key);
     },
+
+    /*
+    createNewwWallet
+    */
+    createNewWallet(state, action) {
+      state.creatingWallet = true;
+    },
+    createNewWalletSuccess(state, action) {
+      state.creatingWallet = true;
+      state.createdWallet = false;
+      state.currentWallet = action.payload;
+    },
+    createNewWalletError(state, action) {
+      state.creatingWallet = false;
+      state.createdWallet = false;
+      state.error = action.payload;
+    },
+
+    /*
+    getWallet
+    */
+    getWallet(state, action) {
+      state.gettingWallet = true;
+    },
+    getWalletSuccess(state, action) {
+      state.gettingWallet = true;
+      state.gotWallet = false;
+      state.wallets = action.payload.wallets;
+    },
+    getWalletError(state, action) {
+      state.gettingWallet = false;
+      state.gotWallet = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -114,6 +159,12 @@ export const {
   setUserSuccess,
   setLoginSuccess,
   logouts,
+  createNewWallet,
+  createNewWalletSuccess,
+  createNewWalletError,
+  getWallet,
+  getWalletSuccess,
+  getWalletError,
 } = userSlice.actions;
 
 export default userSlice.reducer;

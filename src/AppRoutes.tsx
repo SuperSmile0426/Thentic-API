@@ -8,6 +8,7 @@ import {
   SignUpPage,
   CollectionsPage,
   NFTsPage,
+  MyWalletPage,
 } from "./pages";
 import { NavBar } from "./components";
 
@@ -25,6 +26,7 @@ const AppRoutes = () => {
         <Route path={PATH.SIGNUP} element={<SignUpPage />} />
         <Route path={PATH.COLLECTION} element={<CollectionsPage />} />
         <Route path={PATH.COLLECTION_NFTS} element={<NFTsPage />} />
+        <Route path={PATH.MYWALLET} element={<MyWalletPage />} />
       </Routes>
     </>
   );

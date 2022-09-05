@@ -88,6 +88,8 @@ const NFTs = () => {
       nft_id: nft_id,
       nft_data: data,
       to: "0x2bABfAdf0fAfb86297906aE4C7dc11E2e8F0Bc5C",
+      redirect_url: `http://localhost:3000/collections/${id}/${chainId}`,
+      // webhook_url: `https://rdland.io`,
     };
 
     dispatch(createNFT({ NFTInfo: newNFTInfo }));

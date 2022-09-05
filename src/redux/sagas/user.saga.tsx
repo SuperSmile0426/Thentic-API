@@ -8,7 +8,35 @@ import {
   getMeError,
   getApiKeySuccess,
   getApiKeyError,
+  createNewWalletSuccess,
+  createNewWalletError,
+  getWalletSuccess,
+  getWalletError,
 } from "../slices/user.slice";
+
+export function* getWalletSaga(): any {
+  try {
+    const data = yield call(userApi.getWallets);
+
+    if (data) {
+      yield put(getWalletSuccess(data));
+    }
+  } catch (error) {
+    yield put(getWalletError(error));
+  }
+}
+
+export function* createNewWalletSaga(): any {
+  try {
+    const data = yield call(userApi.createNewWallet);
+
+    if (data) {
+      yield put(createNewWalletSuccess(data));
+    }
+  } catch (error) {
+    yield put(getApiKeyError(error));
+  }
+}
 
 export function* getApiKeySaga(): any {
   try {
@@ -18,7 +46,7 @@ export function* getApiKeySaga(): any {
       yield put(getApiKeySuccess(data));
     }
   } catch (error) {
-    yield put(getApiKeyError(error));
+    yield put(createNewWalletError(error));
   }
 }
 

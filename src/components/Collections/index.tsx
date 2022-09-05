@@ -76,8 +76,8 @@ const Collections = () => {
       chain_id: chain,
       name: collectionName,
       short_name: shortName,
-      webhook_url: "https://127.0.0.1:3000/collection1",
-      redirect_url: "https://127.0.0.1:3000/collection2",
+      // webhook_url: "https://127.0.0.1:3000/collection1",
+      redirect_url: "http://localhost:3000/collections",
     };
     await dispatch(createCollection({ collectionInfo: collectionInfo }));
     await getAllCollection();

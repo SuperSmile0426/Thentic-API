@@ -4,6 +4,7 @@ import SignInPage from "./SignIn";
 import SignUpPage from "./SignUp";
 import CollectionsPage from "./Collections";
 import NFTsPage from "./NFTs";
+import MyWalletPage from "./MyWallet";
 
 export {
   DashboardPage,
@@ -12,4 +13,5 @@ export {
   SignUpPage,
   CollectionsPage,
   NFTsPage,
+  MyWalletPage,
 };

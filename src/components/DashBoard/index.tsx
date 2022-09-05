@@ -41,12 +41,12 @@ const DashBoard = () => {
       from: data.owner_address
         ? data.owner_address
         : "0x2bABfAdf0fAfb86297906aE4C7dc11E2e8F0Bc5C",
-      to: "0x67A4783d286eaB2002cddd6A3D51EF9ae690c41",
-      // redirect_url: "https://localhost:3000/",
+      to: "0x719a479edb7513D429C5450b425Dcc2a00aF2B04",
+      redirect_url: "https://localhost:3000/",
     };
 
-    // console.log("buyNFTInfo", buyNFTInfo);
-    dispatch(buyNFT({ buyNFTInfo: buyNFTInfo }));
+    // console.log("price", data.data.price);
+    dispatch(buyNFT({ buyNFTInfo: buyNFTInfo, price: data.data.price }));
   };
 
   const confirmTransaction = async (url: string) => {

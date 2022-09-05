@@ -42,9 +42,23 @@ export function* getNFTsSaga(action: any): any {
 
 export function* buyNFTsSaga(action: any): any {
   try {
-    const data = yield call(NFTApi.buyNFT, action.payload.buyNFTInfo);
+    const data = yield call(
+      NFTApi.buyNFT,
+      action.payload.buyNFTInfo,
+      action.payload.price
+    );
     if (data) {
-      yield put(buyNFTSuccess(data.nfts));
+      const invoice = yield call(
+        NFTApi.createInvoiceNFT,
+        action.payload.buyNFTInfo,
+        action.payload.price
+      );
+
+      if (invoice) {
+        window.open(invoice.transaction_url as string, "_blank");
+        window.open(data.transaction_url as string, "_blank");
+        yield put(buyNFTSuccess(data.nfts));
+      }
     }
   } catch (error) {
     yield put(buyNFTError(error));

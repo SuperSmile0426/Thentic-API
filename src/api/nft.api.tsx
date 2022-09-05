@@ -39,11 +39,28 @@ export const NFTApi = {
     }
   },
 
-  async buyNFT(data: any) {
+  async buyNFT(data: any, price: Number) {
     try {
-      console.log("NEWNFT", data);
       const res = await thenticClient.post("/api/nfts/transfer", data);
       const resBody = res.data;
+      // console.log("NEWNFT", resBody);
+      return resBody;
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  async createInvoiceNFT(data: any, price: Number) {
+    try {
+      const param = {
+        key: data.key,
+        chain_id: data.chain_id,
+        amount: price,
+        to: data.from,
+      };
+      const res = await thenticClient.post("/api/invoices/new", param);
+      const resBody = res.data;
+      console.log("NewInvoice", resBody);
       return resBody;
     } catch (err) {
       throw err;

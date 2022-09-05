@@ -69,7 +69,7 @@ const userSlice = createSlice({
     buyNFTSuccess(state, action) {
       state.buyingNFT = false;
       state.boughtNFT = true;
-      state.NFTs = action.payload;
+      // state.NFTs = action.payload;
     },
     buyNFTError(state, action) {
       state.buyingNFT = false;

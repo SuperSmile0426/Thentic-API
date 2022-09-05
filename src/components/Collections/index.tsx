@@ -77,7 +77,7 @@ const Collections = () => {
       name: collectionName,
       short_name: shortName,
       // webhook_url: "https://127.0.0.1:3000/collection1",
-      redirect_url: "http://localhost:3000/collections",
+      redirect_url: "https://localhost:3000/collections",
     };
     await dispatch(createCollection({ collectionInfo: collectionInfo }));
     await getAllCollection();
@@ -189,7 +189,7 @@ const Collections = () => {
           </Grid>
         </Box>
       ) : (
-        <h2>no</h2>
+        <h2>No Collection </h2>
       )}
 
       <Modal

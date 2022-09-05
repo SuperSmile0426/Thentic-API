@@ -9,7 +9,7 @@ import {
   getWalletSaga,
 } from "./user.saga";
 import { createCollectionSaga, getCollectionsSaga } from "./collection.saga";
-import { createNFTSaga, getNFTsSaga } from "./nft.saga";
+import { createNFTSaga, getNFTsSaga, buyNFTsSaga } from "./nft.saga";
 
 //slices
 import {
@@ -20,7 +20,7 @@ import {
   getWallet,
 } from "../slices/user.slice";
 import { createCollection, getCollections } from "../slices/collection.slice";
-import { createNFT, getNFTs } from "../slices/nft.slice";
+import { createNFT, getNFTs, buyNFT } from "../slices/nft.slice";
 
 function* rootSaga() {
   yield all([takeLatest(signIn.type, signInSaga)]);
@@ -32,6 +32,7 @@ function* rootSaga() {
   yield all([takeLatest(getNFTs.type, getNFTsSaga)]);
   yield all([takeLatest(createNewWallet.type, createNewWalletSaga)]);
   yield all([takeLatest(getWallet.type, getWalletSaga)]);
+  yield all([takeLatest(buyNFT.type, buyNFTsSaga)]);
 }
 
 export default rootSaga;

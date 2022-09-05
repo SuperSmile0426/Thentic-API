@@ -51,7 +51,7 @@ const MyWallet = () => {
       </Button>
       <br />
       <br />
-      <h5>Current My WalletAddress: {currentWallet.wallet}</h5>
+      <h5>Current My WalletAddress: {currentWallet.private_key}</h5>
       <h5>Current My WalletAddress: {currentWallet.wallet}</h5>
 
       {wallets ? (

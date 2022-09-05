@@ -38,4 +38,15 @@ export const NFTApi = {
       throw err;
     }
   },
+
+  async buyNFT(data: any) {
+    try {
+      console.log("NEWNFT", data);
+      const res = await thenticClient.post("/api/nfts/transfer", data);
+      const resBody = res.data;
+      return resBody;
+    } catch (err) {
+      throw err;
+    }
+  },
 };

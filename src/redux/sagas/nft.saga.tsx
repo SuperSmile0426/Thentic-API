@@ -6,6 +6,8 @@ import {
   createNFTError,
   getNFTsSuccess,
   getNFTsError,
+  buyNFTSuccess,
+  buyNFTError,
 } from "../slices/nft.slice";
 
 export function* createNFTSaga(action: any): any {
@@ -35,5 +37,16 @@ export function* getNFTsSaga(action: any): any {
     }
   } catch (error) {
     yield put(getNFTsError(error));
+  }
+}
+
+export function* buyNFTsSaga(action: any): any {
+  try {
+    const data = yield call(NFTApi.buyNFT, action.payload.buyNFTInfo);
+    if (data) {
+      yield put(buyNFTSuccess(data.nfts));
+    }
+  } catch (error) {
+    yield put(buyNFTError(error));
   }
 }

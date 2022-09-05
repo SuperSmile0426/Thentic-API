@@ -11,6 +11,7 @@ export interface INFT {
   request_id?: string;
   transaction_url?: string;
   transaction_pixel?: string;
+  owner_address?: string;
 }
 
 const userSlice = createSlice({
@@ -22,6 +23,8 @@ const userSlice = createSlice({
     createdNFT: false,
     gettingNFTs: false,
     gotNFTs: false,
+    buyingNFT: false,
+    boughtNFT: false,
   },
   reducers: {
     /**
@@ -41,7 +44,7 @@ const userSlice = createSlice({
       state.createdNFT = false;
     },
     /**
-     * get Collctions
+     * get nfts
      */
     getNFTs(state, action) {
       state.gettingNFTs = true;
@@ -56,9 +59,25 @@ const userSlice = createSlice({
       state.gettingNFTs = false;
       state.gotNFTs = false;
     },
+    /**
+     * get nfts
+     */
+    buyNFT(state, action) {
+      state.buyingNFT = true;
+      state.boughtNFT = false;
+    },
+    buyNFTSuccess(state, action) {
+      state.buyingNFT = false;
+      state.boughtNFT = true;
+      state.NFTs = action.payload;
+    },
+    buyNFTError(state, action) {
+      state.buyingNFT = false;
+      state.boughtNFT = false;
+    },
 
     /**
-     * get Collctions
+     * nft transaction
      */
     newTransaction(state, action) {},
     newTransactionSuccess(state, action) {},
@@ -73,6 +92,9 @@ export const {
   getNFTs,
   getNFTsSuccess,
   getNFTsError,
+  buyNFT,
+  buyNFTSuccess,
+  buyNFTError,
   newTransaction,
   newTransactionSuccess,
   newTransactionError,
